@@ -60,14 +60,14 @@ To add data from the dataset.csv file, run the following in a browser. Please ma
 ### Route structure
 
 ```bash
-/perf-data?q=f1:val1,f2:val2,f3.gt:2021-01-02,f3.lte:2021-02-02&fields=f1,f2,f3&group_by=f1,f2&sort_by=f1,f2:desc
+/get-data?q=f1:val1,f2:val2,f3.gt:2021-01-02,f3.lte:2021-02-02&fields=f1,f2,f3&group_by=f1,f2&sort_by=f1,f2:desc
 
-/perf-data?q=f1:val1,f2:val2,f3[.gt|.gte|.lt|.lte]:2021-01-02,f3.lte:2021-02-02&fields=f1,f2,f3&group_by=f1,f2&sort_by=f1,f2[:asc|:desc]
+/get-data?q=f1:val1,f2:val2,f3[.gt|.gte|.lt|.lte]:2021-01-02,f3.lte:2021-02-02&fields=f1,f2,f3&group_by=f1,f2&sort_by=f1,f2[:asc|:desc]
 ```
 
 where f1, f2, ..., fn are field names you want to query.
 
-v1, v2, ..., vn will be the values corresponding to the above fields.
+val1, val2, ..., valn will be the values corresponding to the above fields.
 
 .gte stands for greater then and equal to
 
