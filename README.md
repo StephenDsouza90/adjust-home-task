@@ -49,10 +49,10 @@ To start the server, run the following command:
 
 ## Add data into the database
 
-To add data from the dataset.csv file, run the following in a browser. Please make sure that the dataset.csv file is saved in teh raw_data folder path if it is not there.
+To add data from the dataset.csv file, run the following in a browser. Please make sure that the dataset.csv file is saved in the raw_data folder path if it is not there.
 
 ```bash
->> http://127.0.0.1:8000/add-performace-metrics-data
+>> http://127.0.0.1:8000/add-data
 ```
 
 ## Routes

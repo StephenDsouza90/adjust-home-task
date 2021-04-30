@@ -46,12 +46,12 @@ class Views():
         """
 
         if request.method == "GET":
-            fields, filters_list, group_by_list, order_by_list = process_parameters(request)
+            fields, filters, group_by_fields, order_by = process_parameters(request)
 
-            group_by = get_group_by(group_by_list)
-            fields = get_column_names(fields, group_by)
-            filters = get_filters(filters_list)
-            order_by = get_order_by(order_by_list)
+            group_by = get_group_by(group_by_fields)
+            fields = get_column_names(fields, group_by_fields)
+            filters = get_filters(filters)
+            order_by = get_order_by(order_by)
 
             results = query.get_data(fields, filters, group_by, order_by)
         return JsonResponse(results, safe=False)
