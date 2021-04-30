@@ -395,6 +395,15 @@ To run the test cases, run the following command:
 
 ```bash
 >> python adjust_app/manage.py test adjust_app
+
+Creating test database for alias 'default'...
+System check identified no issues (0 silenced).
+...........
+----------------------------------------------------------------------
+Ran 11 tests in 0.158s
+
+OK
+Destroying test database for alias 'default'...
 ```
 
 ## Note:
