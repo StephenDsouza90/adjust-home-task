@@ -9,7 +9,7 @@ cursor = connection.cursor()
 class Queries():
     """ Handles all interactions with the database """
 
-    SELECT_STATEMENT = "SELECT {fields} FROM {table_name} WHERE {filters} GROUP BY {group_by} ORDER BY {order_by}"
+    SELECT_STATEMENT = "SELECT {fields} FROM {table_name} {filters} {group_by} {order_by}"
 
     def add_data(self, date, channel, country, operating_system, impressions, clicks, installs, spend, revenue):
         """
@@ -39,12 +39,20 @@ class Queries():
         :return json_data: List of returned results
         """
 
-        table_name = PerformanceMetrics()._meta.db_table
-        statement = Queries.SELECT_STATEMENT.format(fields=fields, table_name=table_name, filters=filters,
-                                                    group_by=group_by, order_by=order_by)
+        statement = self.get_statement(fields, filters, group_by, order_by)
         cursor.execute(statement)
         row_headers = [x[0] for x in cursor.description]
         results = cursor.fetchall()
+        results = self.get_results(results, row_headers)
+        return results
+
+    def get_statement(self, fields, filters, group_by, order_by):
+        table_name = PerformanceMetrics()._meta.db_table
+        statement = Queries.SELECT_STATEMENT.format(fields=fields, table_name=table_name, filters=filters,
+                                                    group_by=group_by, order_by=order_by)
+        return statement
+
+    def get_results(self, results, row_headers):
         json_data = []
         for result in results:
                 json_data.append(dict(zip(row_headers, result)))

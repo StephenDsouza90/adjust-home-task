@@ -26,6 +26,10 @@ def get_column_names(fields, group_by):
     :param group_by: Group by names from the query parameter
     :select_clause group_by: Structured column names for the select clause
     """
+
+    if not fields:
+        return " * "
+
     cols = []
     fields_list = fields.split(",")
     compute_cpi = "cpi" in fields_list
@@ -62,6 +66,9 @@ def get_filters(q):
     :return where_clause: Structured where clause containing the column name and value
     """
 
+    if not q:
+        return ""
+
     filters = []
     for filter in q.split(","):
         col, val = filter.split(":")
@@ -79,6 +86,7 @@ def get_filters(q):
             filters.append("{}='{}'".format(actual_col, val))
 
     where_clause = " AND ".join(filters)
+    where_clause = f" WHERE {where_clause} "
     return where_clause
 
 def get_group_by(group_by):
@@ -88,7 +96,11 @@ def get_group_by(group_by):
     :param group_by: Group by names from the query parameter
     :return group_by: Group by column names for the group by clause
     """
-    return group_by
+
+    if group_by:
+        return f" GROUP BY {group_by} "
+    else:
+        return ""
 
 def get_order_by(sort_by):
     """
@@ -98,6 +110,9 @@ def get_order_by(sort_by):
     :param sort_by: Sort by names from the query parameter
     :param sort_by: Sort by column names for order by clause
     """
+
+    if not sort_by:
+        return ""
 
     cols = []
     for col in sort_by.split(","):
@@ -109,4 +124,4 @@ def get_order_by(sort_by):
         cols.append(f"{actual_col} {order_type}")
 
     order_by_clause = ", ".join(cols)
-    return order_by_clause
+    return f"ORDER BY {order_by_clause}"
