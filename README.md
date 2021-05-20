@@ -1,5 +1,15 @@
-# Adjust-Home-Task
-This repository contains the implementation of the Adjust home task. It is written in Python and Django.
+# Single Endpoint Serving Dynamic Requests
+
+This app is a single generic HTTP API endpoint, which is capable of filtering, grouping and sorting a sample data. The API endpoint serves a dynamic dataset that corresponds to any combination of filters, breakdowns and sorting. Dataset represents performance metrics (impressions, clicks, installs, spend, revenue) for a given date, advertising channel, country and operating system.
+
+## The Task
+
+Client of this API should be able to:
+
+1. filter by time range (date_from / date_to is enough), channels, countries, operating systems
+2. group by one or more columns: date, channel, country, operating system
+3. sort by any column in ascending or descending order
+4. see derived metric CPI (cost per install) which is calculated as cpi = spend / installs
 
 ## Virtual environment
 
